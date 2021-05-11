@@ -1,10 +1,12 @@
+require 'colorize'
+require 'colorized_string'
 require_relative 'lib/console_interface'
 require_relative 'lib/game'
 
 # 1. Поздороваться
-puts "Всем привет!"
+puts 'Привет! Игра началась!'.blue.on_yellow
 # 2. Загрузить случайное слово из файла
-word = File.readlines(__dir__ + '/data/words.txt', chomp: true).sample
+word = File.readlines("#{__dir__}/data/words.txt", chomp: true).sample
 game = Game.new(word)
 console_interface = ConsoleInterface.new(game)
 

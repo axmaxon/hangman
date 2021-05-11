@@ -1,7 +1,7 @@
 class ConsoleInterface
   # Пишем в константу массив картинок
   FIGURES =
-    Dir[__dir__ + '/../data/figures/*.txt'].
+    Dir["#{__dir__}/../data/figures/*.txt"].
     sort.
     map { |file_name| File.read(file_name) }
 
@@ -9,20 +9,18 @@ class ConsoleInterface
     @game = game
   end
 
-  # Выводит в консоль состояние игры, используя данные экземпляра
+ # Выводит в консоль состояние игры, используя данные экземпляра
 	def print_out
-    # Конструкция с тильдой - HEREDOC
-    puts <<~END
-      Слово: #{word_to_show}
-      #{figure}
-      Ошибки (#{@game.errors_made}): #{errors_to_show}
-      У вас осталось ошибок: #{@game.errors_allowed}
-    END
+    puts
+    puts "Слово: #{word_to_show}".light_blue
+    puts figure.yellow
+    puts "Ошибки (#{@game.errors_made}): #{errors_to_show}".red
+    puts "У вас осталось ошибок: #{@game.errors_allowed}".green
 
     if @game.won?
-      puts "Вы выиграли!"
+      puts 'Вы выиграли!'.green
     elsif @game.lost?
-      puts "Вы проиграли, загаданное слово #{@game.word}"
+      puts "Вы проиграли, загаданное слово #{@game.word}".red
     end
 	end
 
@@ -36,13 +34,13 @@ class ConsoleInterface
     result =
       @game.letters_to_guess.map do |letter|
       if letter.nil? # letter == nil
-        "__"
+        '__'
       else
         letter
       end
     end
     # Преобразуем массив в строку с разделителем - пробелом
-    result.join(" ") #
+    result.join(' ')
   end
 
   # Показать ошибки (через запятую)
@@ -52,7 +50,7 @@ class ConsoleInterface
 
   # Получает букву от пользователя, приводит к верхнему регистру, возвращает
   def get_input
-    print "Введите следующую букву: "
+    print 'Введите следующую букву: '
     # Принимаем только первую букву из того что введет пользователь и апкейсим
     letter = gets[0].upcase
     letter
