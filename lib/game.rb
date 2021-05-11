@@ -3,18 +3,18 @@ class Game
   TOTAL_ERRORS_ALLOWED = 7
 
   def initialize(word)
-    @letters = word.chars
+    @letters = word.upcase.chars
     @user_guesses = []
   end
 
   # Возвращает количество ошибок, сделанных пользователем
   def errors_made
-    return errors.length
+    errors.length
   end
 
   # Возвращает массив неправильных букв (нет в слове), введенных пользователем
   def errors
-    return @user_guesses - normalized_letters
+    @user_guesses - normalized_letters
   end
 
   # Сколько ещё разрешено ошибок
@@ -22,20 +22,15 @@ class Game
     TOTAL_ERRORS_ALLOWED - errors_made
   end
 
-  # Проходит по буквам слова, сравнивает с введенными буквами. возвращает
-  # массив совпадений. Для совпавших букв берем "ненормализованные"
-  # буквы из @letters
+  # Проходит по буквам слова-образца, сравнивает с введенными буквами. Для совпавших букв
+  # берем "ненормализованные" из @letters. Возвращает - массив совпадений
+  # например такой ['Б', 'Е', 'nil','Р', 'Ё', 'З', nil]
   def letters_to_guess
-    result = []
-    normalized_letters.each_with_index do |letter, index|
-
+    normalized_letters.map.with_index do |letter, index|
       if @user_guesses.include?(letter)
-        result << @letters[index]
-      else
-        result << nil
+        @letters[index]
       end
     end
-    result
   end
 
   # Возвращает true если допустимое оставшееся количество ошибок == 0
@@ -56,7 +51,7 @@ class Game
 
   # Заменяет Ё и Й на Е и И в массиве @letters.
   def normalized_letters
-    @letters.map { |letter| normalize_letter(letter)}
+    @letters.map { |letter| normalize_letter(letter) }
   end
 
   # Возвращает true если состоялся выигрыш или проигрыш

@@ -9,18 +9,18 @@ class ConsoleInterface
     @game = game
   end
 
- # Выводит в консоль состояние игры, используя данные экземпляра
+  # Выводит в консоль состояние игры, используя данные экземпляра
 	def print_out
     puts
     puts "Слово: #{word_to_show}".light_blue
     puts figure.yellow
     puts "Ошибки (#{@game.errors_made}): #{errors_to_show}".red
-    puts "У вас осталось ошибок: #{@game.errors_allowed}".green
+    puts "У вас осталось ошибок: #{@game.errors_allowed}".light_blue
 
     if @game.won?
       puts 'Вы выиграли!'.green
     elsif @game.lost?
-      puts "Вы проиграли, загаданное слово #{@game.word}".red
+      puts "Вы проиграли, было загадано слово '#{@game.word}'".red
     end
 	end
 
@@ -52,7 +52,6 @@ class ConsoleInterface
   def get_input
     print 'Введите следующую букву: '
     # Принимаем только первую букву из того что введет пользователь и апкейсим
-    letter = gets[0].upcase
-    letter
+    gets[0].upcase
   end
 end
