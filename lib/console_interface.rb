@@ -10,7 +10,7 @@ class ConsoleInterface
   end
 
   # Выводит в консоль состояние игры, используя данные экземпляра
-	def print_out
+  def print_out
     puts
     puts "Слово: #{word_to_show}".light_blue
     puts figure.yellow
@@ -22,7 +22,7 @@ class ConsoleInterface
     elsif @game.lost?
       puts "Вы проиграли, было загадано слово '#{@game.word}'".red
     end
-	end
+  end
 
   # Возвращаем картинку номер (и индекс)которой соответствует количеству ошибок
   def figure
