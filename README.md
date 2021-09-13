@@ -1,6 +1,8 @@
 Консольная игра "Hangman"
 ===
 
+![hangman](https://github.com/axmaxon/hangman/blob/main/data/pictures/nangman_.png?raw=true)
+
 ## Суть игры:
 
 В данном приложении реализована популярная игра "Виселица", в которой необходимо угадать скрытое слово
