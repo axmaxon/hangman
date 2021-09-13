@@ -1,7 +1,7 @@
 Консольная игра "Hangman"
 ===
 
-![hangman](https://github.com/axmaxon/hangman/blob/main/data/pictures/nangman_.png?raw=true)
+![hangman](https://github.com/axmaxon/hangman/blob/main/data/pictures/hangman_.png?raw=true)
 
 ## Суть игры:
 
