@@ -1,9 +1,7 @@
 class ConsoleInterface
   # Пишем в константу массив картинок
   FIGURES =
-    Dir["#{__dir__}/../data/figures/*.txt"].
-    sort.
-    map { |file_name| File.read(file_name) }
+    Dir["#{__dir__}/../data/figures/*.txt"].sort.map { |file_name| File.read(file_name) }
 
   def initialize(game)
     @game = game
@@ -24,26 +22,26 @@ class ConsoleInterface
     end
   end
 
-  # Возвращаем картинку номер (и индекс)которой соответствует количеству ошибок
+  # Возвращает картинку номер (и индекс)которой соответствует количеству ошибок
   def figure
     FIGURES[@game.errors_made]
   end
 
-  # Отобразить угадываемое слово (текущее состояние)
+  # Возвращает текущее состояние угадываемого слова
   def word_to_show
-    result =
-      @game.letters_to_guess.map do |letter|
-      if letter.nil? # letter == nil
+    result = @game.letters_to_guess.map do |letter|
+      if letter.nil?
         '__'
       else
         letter
       end
     end
+
     # Преобразуем массив в строку с разделителем - пробелом
     result.join(' ')
   end
 
-  # Показать ошибки (через запятую)
+  # Возвращает список ошибок (через запятую)
   def errors_to_show
     @game.errors.join(', ')
   end
@@ -51,6 +49,7 @@ class ConsoleInterface
   # Получает букву от пользователя, приводит к верхнему регистру, возвращает
   def get_input
     print 'Введите следующую букву: '
+
     # Принимаем только первую букву из того что введет пользователь и апкейсим
     gets[0].upcase
   end

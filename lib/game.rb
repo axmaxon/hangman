@@ -64,13 +64,14 @@ class Game
   # содержит такую букву - добавляет букву в массив
   def play!(letter)
     letter = normalize_letter(letter)
+
     if !over? && !@user_guesses.include?(letter)
       @user_guesses << letter
     end
   end
 
   # Если массив содержащий разность букв в уг.слове и букв введенных - пуст, то true
-   def won?
+  def won?
     (normalized_letters - @user_guesses).empty?
   end
 
